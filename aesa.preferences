@@ -1,0 +1,3 @@
+#AESAPreferences
+#Tue Jul 22 14:01:42 CEST 2014
+nl.andredewaal.utils.security.aesa.preference.keyfile=src\\main\\resources\\ExampleKeyFile.txt
