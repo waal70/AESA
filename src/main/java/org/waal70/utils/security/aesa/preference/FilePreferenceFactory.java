@@ -23,7 +23,7 @@ public class FilePreferenceFactory implements PreferencesFactory
  
   AESAPreferences rootPreferences;
   public static final String SYSTEM_PROPERTY_FILE =
-    "nl.andredewaal.utils.security.aesa.preference.FilePreferenceFactory.file";
+    "org.waal70.utils.security.aesa.preference.FilePreferenceFactory.file";
  
   public Preferences systemRoot()
   {

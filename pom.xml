@@ -5,6 +5,18 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>aesa</name>
   <description>André's encryption and security architecture</description>
+  <build>
+  <plugins>
+  <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warSourceDirectory>WebContent</warSourceDirectory>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            </plugins>
+            </build>
   <dependencies>
   	<dependency>
   		<groupId>log4j</groupId>
@@ -16,5 +28,21 @@
   		<artifactId>junit</artifactId>
   		<version>4.11</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.glassfish.jersey.containers</groupId>
+  		<artifactId>jersey-container-servlet</artifactId>
+  		<version>2.26-b02</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.glassfish.jersey.bundles</groupId>
+  		<artifactId>jaxrs-ri</artifactId>
+  		<version>2.26-b02</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.json</groupId>
+  		<artifactId>json</artifactId>
+  		<version>20151123</version>
+  	</dependency>
   </dependencies>
+  <packaging>war</packaging>
 </project>
