@@ -10,7 +10,7 @@ import org.waal70.utils.security.aesa.crypto.param.KeyParameter;
 /**
  * Controls the encryption engine. Helper class, may disappear later on.
  * 
- * @author André de Waal
+ * @author awaal
  * 
  */
 public class AESAEngine {

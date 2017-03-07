@@ -5,6 +5,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>aesa</name>
   <description>André's encryption and security architecture</description>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
   <plugins>
   <plugin>

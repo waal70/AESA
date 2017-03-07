@@ -11,7 +11,7 @@ public class FileReader extends FileHandler{
 	private InputStream is = null;
 	private int bytesRead=0;
 	private byte[] b = AESAHelper.getEmptyByteArray();
-	private byte[] l;
+	private byte[] l = AESAHelper.getEmptyByteArray();
 	private double currentOffset = 0;
 
 	public FileReader(){
