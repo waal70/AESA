@@ -34,7 +34,7 @@ public class RESTEncode {
 	@Path("/{input}")
 	@Produces("text/plain")
 	public Response encodeInput(@PathParam("input") String msg, 
-			@DefaultValue("defaultpassphrase") @QueryParam("passphrase") String passPhrase)
+			@DefaultValue("defaultpassphrase") @QueryParam("passphrase") String passPhrase) throws UnsupportedEncodingException
 	{
 		
 		String input = msg;
@@ -42,13 +42,10 @@ public class RESTEncode {
 		et.stringTest(input, passPhrase);
 		String output = "Input was: " + input + "\n";
 		output = output + "Passphrase was: " + passPhrase + "\n";
+		if (passPhrase.equals("defaultpassphrase"))
+			output = output + "You can supply your own passphrase by adding QueryParameter ?passphrase= \n";
 		output = output + "\n";
-		try {
-			output = output + "Output is: " + URLEncoder.encode(et.getEncodedResult(),"UTF-8") + "\n";
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		output = output + "Output is: " + URLEncoder.encode(et.getEncodedResult(),"UTF-8") + "\n";
 		output = output + "Achieved in " + et.getEncodeTime() + "ms \n";
 		
 		return Response.ok(output).build();
