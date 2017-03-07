@@ -91,9 +91,9 @@ public class Main {
 	private static void initPreferences()
 	{
 		 final String SYSTEM_PROPERTY_FILE =
-				    "nl.andredewaal.utils.security.aesa.preference.FilePreferenceFactory.file";
+				    "org.waal70.utils.security.aesa.preference.FilePreferenceFactory.file";
 		 log.info("initPreferences()");
-	    System.setProperty("java.util.prefs.PreferencesFactory", "nl.andredewaal.utils.security.aesa.preference.FilePreferenceFactory");
+	    System.setProperty("java.util.prefs.PreferencesFactory", "org.waal70.utils.security.aesa.preference.FilePreferenceFactory");
 	    System.setProperty(SYSTEM_PROPERTY_FILE, "aesa.preferences");
 	    log.info("end initPreferences()");
 	 
