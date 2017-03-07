@@ -1,6 +1,7 @@
 package org.waal70.utils.security.aesa.preference;
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.prefs.AbstractPreferences;
 import java.util.prefs.BackingStoreException;
 import java.io.File;
@@ -107,7 +108,9 @@ public class AESAPreferences extends AbstractPreferences
     synchronized (file) {
       Properties p = new Properties();
       try {
-        p.load(new FileInputStream(file));
+    	FileInputStream fis = new FileInputStream(file);
+    	
+        p.load(fis);
  
         StringBuilder sb = new StringBuilder();
         getPath(sb);
@@ -124,6 +127,8 @@ public class AESAPreferences extends AbstractPreferences
             }
           }
         }
+        //Should I clean up InputStream here?
+        fis.close();
       }
       catch (IOException e) {
         throw new BackingStoreException(e);
@@ -153,7 +158,8 @@ public class AESAPreferences extends AbstractPreferences
         String path = sb.toString();
  
         if (file.exists()) {
-          p.load(new FileInputStream(file));
+        	FileInputStream fis = new FileInputStream(file);
+          p.load(fis);
  
           List<String> toRemove = new ArrayList<String>();
  
@@ -174,16 +180,20 @@ public class AESAPreferences extends AbstractPreferences
           for (String propKey : toRemove) {
             p.remove(propKey);
           }
+          //Clean up the FIS:
+          fis.close();
         }
  
         // If this node hasn't been removed, add back in any values
+        // awaal 07-03-2017: changed this from keySet to entrySet (Findbugs marker)
         if (!isRemoved) {
-          for (String s : root.keySet()) {
-            p.setProperty(path + s, root.get(s));
+          for (Entry<String, String> e : root.entrySet()) {
+            p.setProperty(path + e.getValue(), root.get(e.getKey()));
           }
         }
- 
-        p.store(new FileOutputStream(file), "AESAPreferences");
+        FileOutputStream fos = new FileOutputStream(file);
+        p.store(fos, "AESAPreferences");
+        fos.close();
       }
       catch (IOException e) {
         throw new BackingStoreException(e);

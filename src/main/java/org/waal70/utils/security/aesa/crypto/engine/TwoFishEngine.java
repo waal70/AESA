@@ -293,6 +293,9 @@ public final class TwoFishEngine implements BlockCipher
                     gSBox[i*2+0x201] = gMDS3[(P[P_31]
                         [(P[P_32][b3] & 0xff) ^ b3(k1)] & 0xff) ^ b3(k0)];
                 break;
+                default:
+                	//awaal 07-03-2017. Introduced this per findbug marker. Should this be empty?
+                break;
             }
         }
 
@@ -413,11 +416,13 @@ public final class TwoFishEngine implements BlockCipher
                 b1 = (P[P_14][b1] & 0xff) ^ b1(k3);
                 b2 = (P[P_24][b2] & 0xff) ^ b2(k3);
                 b3 = (P[P_34][b3] & 0xff) ^ b3(k3);
+                //fallthrough is intentional!
             case 3: 
                 b0 = (P[P_03][b0] & 0xff) ^ b0(k2);
                 b1 = (P[P_13][b1] & 0xff) ^ b1(k2);
                 b2 = (P[P_23][b2] & 0xff) ^ b2(k2);
                 b3 = (P[P_33][b3] & 0xff) ^ b3(k2);
+                //fallthrough is intentional!
             case 2:
                 result = 
                 gMDS0[(P[P_01][(P[P_02][b0]&0xff)^b0(k1)]&0xff)^b0(k0)] ^ 
@@ -425,6 +430,9 @@ public final class TwoFishEngine implements BlockCipher
                 gMDS2[(P[P_21][(P[P_22][b2]&0xff)^b2(k1)]&0xff)^b2(k0)] ^
                 gMDS3[(P[P_31][(P[P_32][b3]&0xff)^b3(k1)]&0xff)^b3(k0)];
             break;
+            default:
+            	//awaal 07-03-2017. Introduced this per findbug marker. Should this be empty?
+            	break;
         }
         return result;
     }

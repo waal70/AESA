@@ -7,6 +7,17 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.waal70.utils.security.aesa.preference.FilePreferenceFactory;
 
+/**
+ * @author awaal
+ *  07-03-2017:
+ *  Changed the Preference registry entry, per JDK bug, see:
+ *  http://stackoverflow.com/questions/6698354/where-to-get-utf-8-string-literal-in-java
+ *  07-03-2017:
+ *  Introduced the default UTF-8 encoding into pom.xml:
+ *  <properties>
+ *  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+ *  </properties>
+ */
 public class Main {
 
 	private static Logger log = Logger.getLogger(Main.class);

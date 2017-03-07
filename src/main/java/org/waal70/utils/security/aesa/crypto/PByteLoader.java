@@ -116,11 +116,14 @@ public final class PByteLoader {
 
 	public static byte[][] getDualByteChunk(int i, int j) {
 		initialize();
-		//log.info("get dual byte chunk");
-		byte[] part1 = new byte[256];
-		byte[] part2 = new byte[256];
-		part1=getByteChunk(256, 0);
-		part2=getByteChunk(256, 1);
+		log.debug("get dual byte chunk");
+		//byte[] part1 = new byte[256];
+		//byte[] part2 = new byte[256];
+		//part1 = getByteChunk(256, 0);
+		//part2 = getByteChunk(256, 1);
+		//awaal 07-03-2017 trying out:
+		byte[] part1 = getByteChunk(256,0);
+		byte[] part2 = getByteChunk(256,1);
 		byte total[][] = {part1,part2};
 		return total;
 		

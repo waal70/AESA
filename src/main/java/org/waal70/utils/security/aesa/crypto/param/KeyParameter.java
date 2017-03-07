@@ -24,6 +24,8 @@ public class KeyParameter implements CipherParameters
 
     public byte[] getKey()
     {
-        return this.key;
+    	//awaal 07-03-2017: changed from
+    	// return this.key; into: (findbugs marker)
+        return this.key == null ? null : (byte[]) key.clone();
     }
 }

@@ -64,7 +64,7 @@ public class AESAEngine {
 		//_result = applyEngine(false, encryptArray, passPhrase);
 		millis = System.currentTimeMillis() - millis;
 		log.info("Encrypted phrase is: " + Arrays.toString(endResult));
-		log.info("Converted to String: " + new String(endResult));
+		log.info("Converted to String: " + new String(endResult,AESAConstants.ENCODING));
 		log.info("Encrypt took (ms): " + millis);
 		millis = System.currentTimeMillis();
 		//DECRYPT:
@@ -90,7 +90,7 @@ public class AESAEngine {
 		
 		//_result = applyEngine(true, _result, passPhrase);
 		millis = System.currentTimeMillis() - millis;
-		log.info("Decrypted phrase is: " + new String(endResult2) + "|->EOL");
+		log.info("Decrypted phrase is: " + new String(endResult2, AESAConstants.ENCODING) + "|->EOL");
 		log.info("Decrypt took (ms): " + millis);
 	}
 
@@ -142,7 +142,8 @@ public class AESAEngine {
 			fh = new FileReader(AESAConstants.DEFAULT_BLOCK_SIZE, fileName);
 			fw = new FileWriter(AESAConstants.FILE_PREFIX + fileName);
 		}
-
+		//awaal 07-03:
+		// No infinity loop here, the file will end
 		while (!fh.EOF) {
 			_result = fh.nextChunk();
 			// do encrypt here
@@ -151,6 +152,13 @@ public class AESAEngine {
 				// write result:
 				fw.writeChunk(_result);
 				log.debug("writing...");
+			}
+			// awaal 07-03-2017
+			//else branch added per findbugs marker
+			else //_result is apparently null
+			{
+				log.debug("nextChunk() returned a null string");
+				break;
 			}
 		}
 	}
@@ -194,7 +202,7 @@ public class AESAEngine {
 			// this means IN is byteArray, OUT should be readable:
 			// TODO: understand this
 			log.trace("IN :" + Arrays.toString(in));
-			log.trace("OUT: " + new String(out));
+			log.trace("OUT: " + new String(out, AESAConstants.ENCODING));
 			int i = out.length;
 			while (i-- > 0 && out[i] == 0) {
 			}
@@ -202,7 +210,7 @@ public class AESAEngine {
 			System.arraycopy(out, 0, output, 0, i + 1);
 			return output;
 		} else {
-			log.debug("IN :" + new String(in));
+			log.debug("IN :" + new String(in, AESAConstants.ENCODING));
 			log.debug("OUT: " + Arrays.toString(out));
 		}
 		return out;

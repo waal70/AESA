@@ -17,5 +17,9 @@ public class FileHandler {
 	protected final static Logger log = Logger.getLogger(FileHandler.class);
 	static int _blockSize = AESAConstants.DEFAULT_BLOCK_SIZE;
 	protected boolean EOF = false;
+	
+	public static void setBlockSize ( int newBlockSize ) {
+        FileHandler._blockSize = newBlockSize ;
+   }
 
 }

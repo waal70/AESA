@@ -11,7 +11,7 @@ public class FileReader extends FileHandler{
 	private InputStream is = null;
 	private int bytesRead=0;
 	private byte[] b = AESAHelper.getEmptyByteArray();
-	private byte[] l = AESAHelper.getEmptyByteArray();
+	//private byte[] l = AESAHelper.getEmptyByteArray();
 	private double currentOffset = 0;
 
 	public FileReader(){
@@ -23,7 +23,10 @@ public class FileReader extends FileHandler{
 
 	public FileReader(int requestedBlockSize, String fileName){
 		super();
-		_blockSize = requestedBlockSize;
+		//write to static field intentional
+		// awaal 07-03-2017. Changed write to static
+		//_blockSize = requestedBlockSize;
+		setMyBlockSize(requestedBlockSize);
 		_fileName = System.getenv("TEMP") + "\\" + fileName;
 		b = Arrays.copyOf(b, _blockSize);
 		try {
@@ -35,7 +38,10 @@ public class FileReader extends FileHandler{
 	}
 	
 
-
+	private void setMyBlockSize(int blockSize)
+	{
+		setBlockSize(blockSize);
+	}
 	
 	public byte[] nextChunk()
 	{
@@ -54,7 +60,7 @@ public class FileReader extends FileHandler{
 				// resize final buffer to exact size:
 				//l = Arrays.copyOf(b, bytesRead);
 				this.EOF = true;
-				return l;
+				return null;
 			}
 			currentOffset += bytesRead;
 			log.debug("currentOffset = " + currentOffset);

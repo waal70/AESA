@@ -23,7 +23,7 @@ class AESAInputHelper {
 	{
 		log.debug("Console String input requested");
 		String s;
-	       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	       BufferedReader br = new BufferedReader(new InputStreamReader(System.in,AESAConstants.ENCODING));
 	        System.out.print(pstrPrompt);
 	        try {
 	        		s = br.readLine();
@@ -40,7 +40,7 @@ class AESAInputHelper {
 	{
 		log.debug("Console char input requested");
 		char s;
-	       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	       BufferedReader br = new BufferedReader(new InputStreamReader(System.in, AESAConstants.ENCODING));
 	        System.out.print(pstrPrompt);
 	        try {
 	        		s = (char)br.read();
