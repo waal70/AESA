@@ -23,6 +23,30 @@ public class AESAEngine {
 
 	/** Contains the log4j-logger */
 	private static Logger log = Logger.getLogger(AESAEngine.class);
+	
+	private long encodeTime = 0;
+	private String encodedResult = "NO ACTION PERFORMED";
+	
+	public String getEncodedResult () {
+		return encodedResult;
+	}
+	private void setEncodedResult(String result) {
+		this.encodedResult = result;
+	}
+	
+	/**
+	 * @return the encodeTime
+	 */
+	public long getEncodeTime() {
+		return encodeTime;
+	}
+	/**
+	 * @param encodeTime the encodeTime to set
+	 */
+	private void setEncodeTime(long encodeTime) {
+		this.encodeTime = encodeTime;
+	}
+
 
 	/**
 	 * Performs encryption and decryption on a provided String.<br/>
@@ -65,7 +89,9 @@ public class AESAEngine {
 		millis = System.currentTimeMillis() - millis;
 		log.info("Encrypted phrase is: " + Arrays.toString(endResult));
 		log.info("Converted to String: " + new String(endResult,AESAConstants.ENCODING));
+		setEncodedResult(new String(endResult,AESAConstants.ENCODING));
 		log.info("Encrypt took (ms): " + millis);
+		setEncodeTime(millis);
 		millis = System.currentTimeMillis();
 		//DECRYPT:
 		readingOffset = 0;
@@ -216,6 +242,8 @@ public class AESAEngine {
 		return out;
 
 	}
+
+
 
 	/**
 	 * Overloaded accessor
