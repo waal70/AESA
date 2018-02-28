@@ -258,7 +258,7 @@ public class AESAEngine {
 	 *            passed through
 	 */
 	/*private byte[] applyEngine(boolean decode, String in, String passPhrase) {
-		// TODO Change so it will also start iterating on long string in...
+		// Change so it will also start iterating on long string in...
 		return applyEngine(decode, AESAHelper.digestGet(in, false), passPhrase);
 
 	}*/
