@@ -3,7 +3,8 @@ package org.waal70.utils.security.aesa;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.waal70.utils.security.aesa.crypto.engine.TwoFishEngine;
 import org.waal70.utils.security.aesa.crypto.param.KeyParameter;
 
@@ -22,7 +23,7 @@ public class AESAEngine {
 	private final TwoFishEngine m_tfe = new TwoFishEngine();
 
 	/** Contains the log4j-logger */
-	private static Logger log = Logger.getLogger(AESAEngine.class);
+	private static Logger log = LogManager.getLogger(AESAEngine.class);
 
 	/**
 	 * Performs encryption and decryption on a provided String.<br/>

@@ -4,7 +4,8 @@ package org.waal70.utils.security.aesa.preference;
 import java.io.File;
 import java.util.prefs.Preferences;
 import java.util.prefs.PreferencesFactory;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
  
 /**
  * PreferencesFactory implementation that stores the preferences in a user-defined file. To use it,
@@ -19,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class FilePreferenceFactory implements PreferencesFactory
 {
-  private static final Logger log = Logger.getLogger(FilePreferenceFactory.class);
+  private static final Logger log = LogManager.getLogger(FilePreferenceFactory.class);
  
   AESAPreferences rootPreferences;
   public static final String SYSTEM_PROPERTY_FILE =

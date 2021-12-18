@@ -6,9 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.prefs.Preferences;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.waal70.utils.security.aesa.preference.FilePreferenceFactory;
 
 /**
@@ -17,10 +19,11 @@ import org.waal70.utils.security.aesa.preference.FilePreferenceFactory;
  * Based on a textfile
  */
 public final class PByteLoader {
-	private static Logger log = Logger.getLogger(PByteLoader.class);
+	private static Logger log = LogManager.getLogger(PByteLoader.class);
 	private static InputStream fis;
 	private static File _file;
-	private static String fileName = "ExampleKeyFile.txt";
+	private static String fileNameDefault = "ExampleKeyFile.txt";
+	private static String fileName = "";
 	private static Preferences p = Preferences.userNodeForPackage(FilePreferenceFactory.class);
 	
 	
@@ -39,12 +42,17 @@ public final class PByteLoader {
 		// 3. Check readable
 		//fileName = p.get("keyfile", fileName);
 		
-		fileName = p.get("keyfile", System.getenv("TEMP") + File.separator + fileName);
+		fileName = p.get("keyfile", System.getenv("TEMP") + File.separator + fileNameDefault);
 		log.debug("fileName = " + fileName);
 		
 		_file = new File(fileName);
 		if (!_file.exists() ) {
-			log.fatal("Keyfile not found!");
+			log.error("Keyfile not found, trying alternative " + p.get("keyfile", fileNameDefault) + " on classpath");
+			//try alternative:
+			URL temp = PByteLoader.class.getResource("/" + fileNameDefault);
+			log.debug("Alternative is on location: " + temp.toExternalForm());
+			_file = new File(temp.getFile());
+			
 		}
 		log.debug("total space = " + _file.length() + " bytes");
 		try {

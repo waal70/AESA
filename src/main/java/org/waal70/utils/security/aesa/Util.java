@@ -1,12 +1,10 @@
 package org.waal70.utils.security.aesa;
 
-import java.io.InputStream;
-
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Util {
-	private static Logger log = Logger.getLogger(Util.class);
+	private static Logger log = LogManager.getLogger(Util.class);
 	private static final byte[][] P =  {
 	    {  // p0
 	        (byte) 0xA9, (byte) 0x67, (byte) 0xB3, (byte) 0xE8,
@@ -141,7 +139,6 @@ public class Util {
 	    };
 	
 	public static void main(String[] args) {
-		initLog4J();
 		log.info("Util class");
 		log.info("P[0].length = " + P[0].length);
 		log.info("P[1].length = " + P[1].length);
@@ -154,11 +151,7 @@ public class Util {
 		
 
 	}
-	private static void initLog4J()
-	{
-		InputStream is = Main.class.getResourceAsStream("/log4j.properties");
-		PropertyConfigurator.configure(is);
-	}
+
 	public static int calculateIterations(int inputSize)
 	{
 		//takes DEFAULT_BLOCK_SIZE and calculates the minimum iterations needed

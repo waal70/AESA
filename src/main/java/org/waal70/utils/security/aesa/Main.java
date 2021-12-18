@@ -1,15 +1,14 @@
 package org.waal70.utils.security.aesa;
 
-import java.io.InputStream;
 import java.util.prefs.Preferences;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.waal70.utils.security.aesa.preference.FilePreferenceFactory;
 
 public class Main {
 
-	private static Logger log = Logger.getLogger(Main.class);
+	private static Logger log = LogManager.getLogger(Main.class);
 	private static AESAInputHelper aih = new AESAInputHelper();
 	private static AESAEngine et = null;  //BUGFIX: no new-keyword, as initialize should take place
 											//, assignment replaced to main-function
@@ -18,7 +17,6 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		initLog4J();
 		log.info("==============START NEW EXECUTION RUN====================");
 		initPreferences();
 		log.debug(System.getProperty("user.home"));
@@ -72,11 +70,6 @@ public class Main {
 		et.stringTest(input, passPhrase);	
 	}
 	
-	private static void initLog4J()
-	{
-		InputStream is = Main.class.getResourceAsStream("/log4j.properties");
-		PropertyConfigurator.configure(is);
-	}
 	private static void initPreferences()
 	{
 		 final String SYSTEM_PROPERTY_FILE =

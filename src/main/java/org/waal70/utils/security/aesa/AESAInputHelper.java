@@ -7,7 +7,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 /**
  * @author awaal
@@ -17,7 +18,7 @@ class AESAInputHelper {
 	
 	private String pDefaultResponse = "SetupLog.txt";
 	private char pDefaultResponseChar = "e".charAt(0);
-	private static Logger log = Logger.getLogger(AESAInputHelper.class);
+	private static Logger log = LogManager.getLogger(AESAInputHelper.class);
 	
 	public String getInputStringFromConsole(String pstrPrompt)
 	{

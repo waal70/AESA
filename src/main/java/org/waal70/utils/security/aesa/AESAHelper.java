@@ -5,7 +5,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 /**
  * Helper class for the AESA project.<br/>
@@ -16,7 +17,7 @@ import org.apache.log4j.Logger;
 public final class AESAHelper {
 	
 	private static MessageDigest m_sha;
-	private static final Logger log = Logger.getLogger(AESAHelper.class);
+	private static final Logger log = LogManager.getLogger(AESAHelper.class);
 	private static final byte[] emptyByteArray = new byte[0];
 
 	private AESAHelper() {

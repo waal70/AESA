@@ -8,7 +8,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.FileOutputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
  
 /**
  * Preferences implementation that stores to a user-defined file. See AESAPreferencesFactory.
@@ -18,7 +19,7 @@ import org.apache.log4j.Logger;
  */
 public class AESAPreferences extends AbstractPreferences
 {
-  private static final Logger log = Logger.getLogger(AESAPreferences.class);
+  private static final Logger log = LogManager.getLogger(AESAPreferences.class);
  
   private Map<String, String> root;
   private Map<String, AESAPreferences> children=null;
